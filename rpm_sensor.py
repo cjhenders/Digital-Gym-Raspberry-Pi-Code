@@ -12,7 +12,7 @@ global last_time
 
 # Define the API endpoint:
 API_ENDPOINT = "http://52.34.141.31:8000/bbb/bike"
-
+API_SESSION_CHECK = "http://52.34.141.31:8000/bbb/sessionlisten"
 
 def sensorCallback1(channel):
     global last_time
@@ -48,8 +48,8 @@ def main():
     try:
         while True:
             miss += 1
-            time.sleep(0.1)
-            if miss == 30:
+            time.sleep(1)
+            if miss >= 3:
                 data = {"rpm": 0, "bikeId": "1"}
                 try:
                     r = requests.post(url=API_ENDPOINT, data=data)
