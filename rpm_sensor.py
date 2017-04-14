@@ -53,6 +53,7 @@ def main():
                 data = {"rpm": 0, "bikeId": "1"}
                 try:
                     session = requests.get(url=API_SESSION_CHECK)
+                    print session
                     if(session and not (session.status == "failure")):
                         r = requests.post(url=API_ENDPOINT, data=data)
                         # sessionid = session.user.id
