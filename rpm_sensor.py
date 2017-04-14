@@ -27,13 +27,12 @@ def sensorCallback1(channel):
 
 
     current_time = time.time()
-    print current_time
-    rpm = (1 / (current_time - last_time)) * 60
-    print rpm
+
+
     if ((1 / (current_time - last_time))*60 < 200):
         if ((1 / (current_time - last_time))*60 > 10):
             rpm = (1 / (current_time - last_time)) * 60
-            print rpm
+            print "Rpm:"+ rpm
             post_data = {"rpm": rpm, "bikeId": "1"}
             try:
                 r = requests.post(url=API_ENDPOINT, data=post_data)
