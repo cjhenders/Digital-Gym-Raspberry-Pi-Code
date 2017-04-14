@@ -60,13 +60,13 @@ def main():
             miss += 1
             time.sleep(1)
             if miss >= 3:
-                data = {"rpm": 0, "bikeId": "1"}
+                data2 = {"rpm": 0, "bikeId": "1"}
 
                 try:
                     session = requests.get(url=API_SESSION_CHECK)
                     data = json.loads(session.text)
                     if(data and not (data['status'] == "failure")):
-                        data2 = {rpm: 0, bikeId: "1"}
+
                         r = requests.post(url=API_ENDPOINT, data=data2)
                         sessionid = data['user']['id']
                         # sessionid = session.user.id
