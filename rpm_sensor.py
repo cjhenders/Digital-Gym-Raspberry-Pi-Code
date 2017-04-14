@@ -55,7 +55,8 @@ def main():
         while True:
             print "Missing: "+ str(miss)
             if(not (sessionid == -1) and miss == 40):
-                logout = requests.get(url=API_LOG_OUT, data={userId: sessionid})
+                logout = requests.get(url=API_LOG_OUT, data={"userId": sessionid})
+                sessionid = -1
 
             miss += 1
             time.sleep(1)
@@ -63,8 +64,11 @@ def main():
                 data2 = {"rpm": 0, "bikeId": "1"}
 
                 try:
-                    session = requests.get(url=API_SESSION_CHECK)
-                    data = json.loads(session.text)
+                    if(sessionid == -1):
+                        session = requests.get(url=API_SESSION_CHECK)
+                        data = json.loads(session.text)
+                        miss=3
+
                     if(data and not (data['status'] == "failure")):
 
                         r = requests.post(url=API_ENDPOINT, data=data2)
