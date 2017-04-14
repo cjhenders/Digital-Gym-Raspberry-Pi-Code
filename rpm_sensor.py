@@ -52,6 +52,7 @@ def main():
             time.sleep(1)
             if miss >= 3:
                 data = {"rpm": 0, "bikeId": "1"}
+
                 try:
                     session = requests.get(url=API_SESSION_CHECK)
                     data = json.loads(resp.text)
