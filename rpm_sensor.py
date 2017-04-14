@@ -19,6 +19,7 @@ API_LOG_OUT = "http://52.34.141.31:8000/bbb/logout"
 def sensorCallback1(channel):
     global last_time
     global miss
+    global sessionid
 
     miss = 0
     if not last_time:
@@ -45,12 +46,15 @@ def sensorCallback1(channel):
 def main():
     global miss
     global sessionid
+
+
+    sessionid = -1
     miss = 0
 
     try:
         while True:
             print "Missing: "+ str(miss)
-            if(sessionid and miss== 1800):
+            if(not (sessionid == -1) and miss == 1800):
                 logout = requests.get(url=API_LOG_OUT, data={userId: sessionid})
 
             miss += 1
