@@ -22,6 +22,7 @@ def sensorCallback1(channel):
     if not last_time:
         last_time = 0
 
+    rpm = (1 / (current_time - last_time)) * 60
     current_time = time.time()
     if ((1 / (current_time - last_time)) * 60 < 200) and ((1 / (current_time - last_time)) * 60 > 10):
         rpm = (1 / (current_time - last_time)) * 60
