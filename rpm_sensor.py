@@ -20,7 +20,7 @@ def sensorCallback1(channel):
 
     miss = 0
     if not last_time:
-        last_time = 0
+        last_time = time.time()
 
 
     current_time = time.time()
