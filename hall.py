@@ -40,27 +40,26 @@ def sensorCallback1(channel):
 
 	miss =0
 	if not last_time:
-	last_time = 0
+		last_time = 0
  
 	# Called if sensor output goes LOW
 	current_time = time.time()
-	if ((1 / (current_time - last_time)) * 60 < 200) and ((1 / (current_time - last_time)) * 60 > 10):
-        # Send Post request and save the response as a response object
+	if (((1 / (current_time - last_time)) * 60 < 200) and ((1 / (current_time - last_time)) * 60 > 10)):
         rpm = (1/(current_time - last_time))*60
-        print rpm
-        data = {"rpm": rpm, "bikeId": "1"}
-        try:
-            r = requests.post(url = API_ENDPOINT, data = data)
-        except requests.exceptions.RequestException as e:
-            print "Connection Error"
-            if email == False:
-                email = True
-                msg["Subject"] = "Pi Bike #1 has had a connection error"
-                msg["From"] = cjhenders @ gmail.com
-                msg["To"] = cjhenders @ gmail.com
-                s = smtplib.SMTP("localhost")
-                s.sendmail(cjhenders @ gmail.com, [cjhenders @ gmail.com], msg.as_string())
-                s.quit
+		print rpm
+		data = {"rpm": rpm, "bikeId": "1"}
+		try:
+			r = requests.post(url = API_ENDPOINT, data = data)
+		except requests.exceptions.RequestException as e:
+			print "Connection Error"
+			if email == False:
+				email = True
+				msg["Subject"] = "Pi Bike #1 has had a connection error"
+				msg["From"] = cjhenders @ gmail.com
+				msg["To"] = cjhenders @ gmail.com
+				s = smtplib.SMTP("localhost")
+				s.sendmail(cjhenders @ gmail.com, [cjhenders @ gmail.com], msg.as_string())
+				s.quit
 			#extracting response text
 			pastebin_url = r.text
 			print("the pastebin URL is: %s"%pastebin_url)
@@ -90,7 +89,7 @@ def main():
 
 				data = {"rpm": 0,
 					"bikeId": "1"}
-			try:        
+			try:
 				r = requests.post(url = API_ENDPOINT, data = data)
 				email = False
 			except requests.exceptions.RequestException as e:
@@ -107,11 +106,11 @@ def main():
 			#extracting response text
 
 			pastebin_url = r.text
-		    print("0 Response %s"%pastebin_url)
+			print("0 Response %s"%pastebin_url)
 
 
   except KeyboardInterrupt:
-    # Reset GPIO settings
+	# Reset GPIO settings
 	GPIO.cleanup()
   
 # Tell GPIO library to use GPIO references
