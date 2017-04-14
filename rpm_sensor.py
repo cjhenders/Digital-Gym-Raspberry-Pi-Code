@@ -46,10 +46,10 @@ def main():
             time.sleep(0.1)
             if miss == 30:
                 data = {"rpm": 0, "bikeId": "1"}
-            try:
-                r = requests.post(url=API_ENDPOINT, data=data)
-            except requests.exceptions.RequestException as e:
-                print e
+                try:
+                    r = requests.post(url=API_ENDPOINT, data=data)
+                except requests.exceptions.RequestException as e:
+                    print e
 
             print("0 Response Posted")
 
