@@ -29,7 +29,7 @@ def sensorCallback1(channel):
         post_data = {"rpm": rpm, "bikeId": "1"}
         try:
             r = requests.post(url=API_ENDPOINT, data=post_data)
-        except request.exceptions.RequestException as e:
+        except requests.exceptions.RequestException as e:
             print e
 
         last_time = current_time
