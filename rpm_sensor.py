@@ -1,6 +1,7 @@
 # Import required libraries
 import RPi.GPIO as GPIO
 import time
+import json
 import datetime
 import requests
 import urllib
@@ -53,8 +54,8 @@ def main():
                 data = {"rpm": 0, "bikeId": "1"}
                 try:
                     session = requests.get(url=API_SESSION_CHECK)
-                    print session
-                    if(session and not (session.status == "failure")):
+                    data = json.loads(resp.text)
+                    if(data and not (data.status == "failure")):
                         r = requests.post(url=API_ENDPOINT, data=data)
                         # sessionid = session.user.id
                         # print "sesionid"
