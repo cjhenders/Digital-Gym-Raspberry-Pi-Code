@@ -35,17 +35,17 @@ API_ENDPOINT = "http://52.34.141.31:8000/bbb/bike"
 
 def sensorCallback1(channel):
   
-	global last_time
-	global miss
+    global last_time
+    global miss
 
-	miss =0
-	if not last_time:
-		last_time = 0
+    miss =0
+    if notlast_time:
+        last_time = 0
  
 	# Called if sensor output goes LOW
 	current_time = time.time()
 	if (((1 / (current_time - last_time)) * 60 < 200) and ((1 / (current_time - last_time)) * 60 > 10)):
-        rpm = (1/(current_time - last_time))*60
+        rpm = ((1/(current_time - last_time))*60)
 		print rpm
 		data = {"rpm": rpm, "bikeId": "1"}
 		try:
@@ -94,14 +94,7 @@ def main():
 				email = False
 			except requests.exceptions.RequestException as e:
 				print "Connection Error"
-				if email == False:
-					email = True
-					msg["Subject"] = "Pi Bike #1 has had a connection error"
-					msg["From"] = cjhenders@gmail.com
-					msg["To"] = cjhenders@gmail.com
-					s = smtplib.SMTP("localhost")
-					s.sendmail(cjhenders@gmail.com,[cjhenders@gmail.com],msg.as_string())
-					s.quit
+
 			# Send Post request and save the response as a response object
 			#extracting response text
 
