@@ -14,6 +14,7 @@ global last_time
 # Define the API endpoint:
 API_ENDPOINT = "http://52.34.141.31:8000/bbb/bike"
 API_SESSION_CHECK = "http://52.34.141.31:8000/bbb/sessionlisten"
+API_LOG_OUT = "http://52.34.141.31:8000/bbb/logout"
 
 def sensorCallback1(channel):
     global last_time
@@ -48,6 +49,10 @@ def main():
 
     try:
         while True:
+            print "Missing: "+ str(miss)
+            if(sessionid and miss== 1800):
+                logout = requests.get(url=API_LOG_OUT, data={userId: sessionid})
+
             miss += 1
             time.sleep(1)
             if miss >= 3:
@@ -56,13 +61,15 @@ def main():
                 try:
                     session = requests.get(url=API_SESSION_CHECK)
                     data = json.loads(session.text)
-                    print data
                     if(data and not (data['status'] == "failure")):
-                        r = requests.post(url=API_ENDPOINT, data=data)
+                        data2 = {rpm: rpm, bikeId: "1"}
+                        r = requests.post(url=API_ENDPOINT, data=data2)
+                        sessionid = data['user']['id']
                         # sessionid = session.user.id
                         # print "sesionid"
                         # print sessionid
                         print("0 Response Posted")
+
                     else:
                         print("0 Response NOT Posted")
 
