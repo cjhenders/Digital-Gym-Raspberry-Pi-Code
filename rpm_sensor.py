@@ -51,7 +51,7 @@ def main():
                 except requests.exceptions.RequestException as e:
                     print e
 
-            print("0 Response Posted")
+                print("0 Response Posted")
 
     except KeyboardInterrupt:
         GPIO.cleanup()
