@@ -48,7 +48,7 @@ def main():
                 data = {"rpm": 0, "bikeId": "1"}
             try:
                 r = requests.post(url=API_ENDPOINT, data=data)
-            except request.exceptions.RequestException as e:
+            except requests.exceptions.RequestException as e:
                 print e
 
             print("0 Response Posted")
