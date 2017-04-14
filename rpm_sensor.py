@@ -57,7 +57,7 @@ def main():
         GPIO.cleanup()
 
 
-GPO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 
 print "Setup of GPIO pin as Input for RPM Sensor"
 
