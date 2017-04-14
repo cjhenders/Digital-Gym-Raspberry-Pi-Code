@@ -35,17 +35,17 @@ API_ENDPOINT = "http://52.34.141.31:8000/bbb/bike"
 
 def sensorCallback1(channel):
   
-    global last_time
-    global miss
+	global last_time
+	global miss
 
-    miss =0
-    if notlast_time:
-        last_time = 0
+	miss =0
+	if notlast_time:
+		last_time = 0
  
 	# Called if sensor output goes LOW
 	current_time = time.time()
 	if (((1 / (current_time - last_time)) * 60 < 200) and ((1 / (current_time - last_time)) * 60 > 10)):
-        rpm = ((1/(current_time - last_time))*60)
+		rpm = ((1/(current_time - last_time))*60)
 		print rpm
 		data = {"rpm": rpm, "bikeId": "1"}
 		try:
@@ -102,9 +102,9 @@ def main():
 			print("0 Response %s"%pastebin_url)
 
 
-  except KeyboardInterrupt:
-	# Reset GPIO settings
-	GPIO.cleanup()
+    except KeyboardInterrupt:
+	    # Reset GPIO settings
+	    GPIO.cleanup()
   
 # Tell GPIO library to use GPIO references
 GPIO.setmode(GPIO.BCM)
@@ -117,6 +117,6 @@ GPIO.add_event_detect(27, GPIO.FALLING, callback=sensorCallback1)
 
 
 if __name__=="__main__":
-  last_time = 0
-  main()
+    last_time = 0
+    main()
    

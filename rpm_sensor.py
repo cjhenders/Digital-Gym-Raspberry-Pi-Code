@@ -65,7 +65,7 @@ print "Setup of GPIO pin as Input for RPM Sensor"
 
 # Set switch GPIO as input
 
-GPIO.setup(27 , GPIO.IN)
+GPIO.setup(27, GPIO.IN)
 GPIO.add_event_detect(27, GPIO.FALLING, callback=sensorCallback1)
 
 if __name__ == "__main__":
