@@ -37,7 +37,7 @@ def sensorCallback1(channel):
             except requests.exceptions.RequestException as e:
                 print e
 
-            last_time = current_time
+        last_time = current_time
 
 
 def main():
