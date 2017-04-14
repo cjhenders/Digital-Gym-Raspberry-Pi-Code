@@ -42,7 +42,7 @@ def sensorCallback1(channel):
 
 def main():
     global miss
-
+    global sessionid
     miss = 0
 
     try:
@@ -52,11 +52,20 @@ def main():
             if miss >= 3:
                 data = {"rpm": 0, "bikeId": "1"}
                 try:
-                    r = requests.post(url=API_ENDPOINT, data=data)
+                    session = requests.get(url=API_SESSION_CHECK)
+                    if(not (session.status == "failure")):
+                        r = requests.post(url=API_ENDPOINT, data=data)
+                        # sessionid = session.user.id
+                        # print "sesionid"
+                        # print sessionid
+                        print("0 Response Posted")
+                    else:
+                        print("0 Response NOT Posted")
+
                 except requests.exceptions.RequestException as e:
                     print e
 
-                print("0 Response Posted")
+
 
     except KeyboardInterrupt:
         GPIO.cleanup()
