@@ -54,7 +54,7 @@ def main():
     try:
         while True:
             print "Missing: "+ str(miss)
-            if(not (sessionid == -1) and miss == 1800):
+            if(not (sessionid == -1) and miss == 40):
                 logout = requests.get(url=API_LOG_OUT, data={userId: sessionid})
 
             miss += 1
