@@ -56,6 +56,7 @@ def main():
                 try:
                     session = requests.get(url=API_SESSION_CHECK)
                     data = json.loads(session.text)
+                    print data
                     if(data and not (data.status == "failure")):
                         r = requests.post(url=API_ENDPOINT, data=data)
                         # sessionid = session.user.id
