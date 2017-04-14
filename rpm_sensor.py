@@ -66,7 +66,7 @@ def main():
                     session = requests.get(url=API_SESSION_CHECK)
                     data = json.loads(session.text)
                     if(data and not (data['status'] == "failure")):
-                        data2 = {rpm: rpm, bikeId: "1"}
+                        data2 = {rpm: 0, bikeId: "1"}
                         r = requests.post(url=API_ENDPOINT, data=data2)
                         sessionid = data['user']['id']
                         # sessionid = session.user.id
