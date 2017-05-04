@@ -39,8 +39,8 @@ def sensorCallback1(channel):
             post_data = {"rpm": rpm, "bikeId": "1"}
             try:
                 r = requests.post(url=API_ENDPOINT, data=post_data)
-            except requests.exceptions.RequestException as e:
-                print e
+            except requests.exceptions.RequestException as error:
+                print error
 
         last_time = current_time
 
@@ -58,7 +58,6 @@ def main():
     """
     try:
         while True:
-
             #print "Missing: "+ str(miss)
             if(not (sessionid == -1) and miss == 20):
                 print "Sessionid: "+str(sessionid)
