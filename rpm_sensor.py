@@ -65,7 +65,7 @@ def main():
                 sessionid = -1
 
             miss += 1
-            time.sleep(1)
+            time.sleep(5)
             if miss >= 3:
                 data2 = {"rpm": 0, "bikeId": "1"}
 
